@@ -22,6 +22,12 @@ class Queue {
     front() {
         return this.list[this.index]
     }
+    findItem(index) {
+        return this.list[index]
+    }
+    size() {
+        return this.list.length
+    }
 }
 
 export default Queue
