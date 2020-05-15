@@ -46,7 +46,6 @@ var wallsAndGates = function(rooms) {
             }
         }
     }
-    console.log(JSON.parse(JSON.stringify(rooms)))
 };
 function distanceToNearest(rooms, startRow, startCol) {
     let m = rooms.length
@@ -63,7 +62,7 @@ function distanceToNearest(rooms, startRow, startCol) {
         for (let direction of DIRECTIONS) {
             let r = row + direction[0]
             let c = col + direction[1]
-            if (r < 0 || c < 0 || r >= m || c >= n || rooms[r][c] === WALL || rooms[r][c] !== 0) {
+            if (r < 0 || c < 0 || r >= m || c >= n || rooms[r][c] === WALL || distance[r][c] !== 0) {
                 continue;
             }
             distance[r][c] = distance[row][col] + 1
