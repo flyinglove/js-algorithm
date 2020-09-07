@@ -11,17 +11,49 @@
 // num = 2 13 = 4 + 9
 // num = 3 14 = 1 + 4 + 9
 // num = 4 15 = 1 + 1 + 4 + 9
+// 暴力法
+// var numSquares = function(n) {
+//     let num = Number.parseInt(n ** (1/2))
+//     let squareNums = []
+//     for (let i = 1;i <= num; i++) {
+//         squareNums.push(i ** 2)
+//     }
+//     function getMinSquare(k) {
+//         if (squareNums.includes(k)) {
+//             return 1
+//         }
+//         let minNum = Infinity
+//         for (let square in squareNums) {
+//             if (k < square) {
+//                 break
+//             }
+//             let newNum = getMinSquare(k - square) + 1
+//             minNum = Math.min(minNum, newNum)
+//         }
+//         return minNum
+//     }
+//     return getMinSquare(n)
+// };
 
-var numSquares = function(n) {
-    let count = 0
-    let start = Number.parseInt(n ** (1/2))
-    if (start ** 2 === n) {
-        return 1
+// dp
+
+var numSquares = function (n) {
+    let num = Number.parseInt(n)
+    let squareNums = []
+    for (let i = 0; i < num; i++) {
+        squareNums.push(i ** 2)
     }
-    start = n - start ** 2
-    count += numSquares(start)
-    return count
-};
-
-
-console.log(numSquares(12))
+    let dp = []
+    for (let i = 0;i < n + 1; i++) {
+        dp.push(Infinity)
+    }
+    for (let i = 1; i < n + 1; i ++) {
+        for (let square of squareNums) {
+            if (i < square) {
+                break
+            }
+            dp[i] = Math.min(dp[i], dp[i - square] + 1)
+        }
+    }
+    return dp[n]
+}
