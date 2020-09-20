@@ -27,5 +27,4 @@ function merge(arr, lo, mid, hi) {
         else if (less(aux[j], aux[i])) arr[k] = aux[j++]
         else arr[k] = aux[i++]
     }
-    console.log(arr)
 }
